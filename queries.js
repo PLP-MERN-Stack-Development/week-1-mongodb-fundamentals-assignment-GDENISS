@@ -1,3 +1,5 @@
+// queries.js
+
 const { MongoClient } = require('mongodb');
 const uri = 'mongodb://localhost:27017';
 const dbName = 'plp_bookstore';
@@ -29,7 +31,7 @@ async function runQueries() {
     ]).toArray();
     console.log('Book count by genre:', groupedGenres);
 
-    // Index and Explain
+    // Indexing + Explain
     await collection.createIndex({ author: 1, published_year: -1 });
     const explain = await collection.find({
       author: 'J.R.R. Tolkien',
